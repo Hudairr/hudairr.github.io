@@ -109,10 +109,11 @@ const SITE = {
     }
   ],
 
-  // ── CONTACT — replace with your real links ─────────────
+  // ── CONTACT — replace every value below with your real ones ─
   contact: {
-    email: "hello@hudairr.com",
     linkedin: "https://linkedin.com/in/your-handle",
+    email: "hello@hudairr.com",
+    telegram: "https://t.me/your-username",
     instagram: "https://instagram.com/lookitshuda",
     tiktok: "https://tiktok.com/@lookitshuda"
   }

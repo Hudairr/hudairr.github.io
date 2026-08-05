@@ -36,7 +36,7 @@
       return `
       <article class="card reveal">
         <div class="card__media${isPhoto ? " is-photo" : ""}">
-          <img src="${p.image}" alt="${p.imageAlt || p.title}" loading="lazy">
+          <img src="${p.image}" alt="${p.imageAlt || p.title}" loading="lazy" decoding="async">
         </div>
         <div class="card__body">
           <span class="card__tag">${p.tag}</span>
@@ -79,8 +79,9 @@
   function renderContact() {
     const c = SITE.contact;
     const links = [
-      c.email ? { label: c.email.replace("mailto:", ""), href: `mailto:${c.email}` } : null,
       c.linkedin ? { label: "LinkedIn", href: c.linkedin } : null,
+      c.email ? { label: c.email.replace("mailto:", ""), href: `mailto:${c.email}` } : null,
+      c.telegram ? { label: "Telegram", href: c.telegram } : null,
       c.instagram ? { label: "Instagram", href: c.instagram } : null,
       c.tiktok ? { label: "TikTok", href: c.tiktok } : null,
     ].filter(Boolean);
