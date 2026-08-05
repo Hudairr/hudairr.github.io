@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Huda Imran — Brand & Marketing Strategist</title>
-<meta name="description" content="Huda Imran — brand strategy, design, and data-driven marketing. Dubai, UAE.">
+<title>Huda Imran — Strategy, Brand & Growth Professional</title>
+<meta name="description" content="Huda Imran — strategy, brand, and data-driven marketing. Dubai / Ajman, UAE.">
 
 <!-- Social preview (LinkedIn, WhatsApp, Telegram, etc.) -->
-<meta property="og:title" content="Huda Imran — Brand & Marketing Strategist">
-<meta property="og:description" content="Brand strategy, design, and data-driven marketing work. Dubai, UAE.">
+<meta property="og:title" content="Huda Imran — Strategy, Brand & Growth Professional">
+<meta property="og:description" content="Strategy. Data. Events. Brand. Marketing & business strategy work, brand systems, and a UGC creator practice. Dubai / Ajman, UAE.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/asjad-logo.png">
 <meta name="twitter:card" content="summary">
@@ -26,7 +26,7 @@
 <nav class="rail" aria-label="Section navigation">
   <button class="rail__seg" data-c="hero" data-target="hero" aria-label="Hero"><span class="rail__label">Top</span></button>
   <button class="rail__seg" data-c="design" data-target="design" aria-label="Design work"><span class="rail__label">Design</span></button>
-  <button class="rail__seg" data-c="data" data-target="data" aria-label="Data & strategy"><span class="rail__label">Data &amp; Strategy</span></button>
+  <button class="rail__seg" data-c="data" data-target="data" aria-label="Experience"><span class="rail__label">Experience</span></button>
   <button class="rail__seg" data-c="community" data-target="community" aria-label="Community"><span class="rail__label">Community</span></button>
   <button class="rail__seg" data-c="contact" data-target="contact" aria-label="Contact"><span class="rail__label">Contact</span></button>
 </nav>
@@ -34,8 +34,9 @@
 <div class="nav">
   <span class="nav__mark" id="nav-mark"></span>
   <div class="nav__links">
+    <a href="#services">Services</a>
     <a href="#design">Design</a>
-    <a href="#data">Data &amp; Strategy</a>
+    <a href="#data">Experience</a>
     <a href="#community">Community</a>
     <a href="#contact">Contact</a>
   </div>
@@ -51,6 +52,10 @@
     <div class="hero__meta">
       <span><b id="hero-location"></b></span>
       <span id="hero-availability"></span>
+    </div>
+
+    <div class="hero__cta">
+      <a class="btn" id="hero-cta" href="#contact">Book a discovery call →</a>
     </div>
 
     <div class="swatches" aria-hidden="true">
@@ -70,10 +75,27 @@
       <div class="about-copy reveal">
         <p class="section-head__eyebrow" style="margin-bottom:14px;">About</p>
         <p id="about-text"></p>
+        <blockquote class="pull-quote" id="about-philosophy"></blockquote>
       </div>
       <div class="reveal">
         <div class="creds" id="creds-list"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--paper section--tight" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__eyebrow">Services</span>
+        <h2>What I can run for you.</h2>
+        <p>Pick a lane below, or ask about a bundle — everything is customisable.</p>
+      </div>
+
+      <div class="tabs reveal" id="service-tabs" role="tablist"></div>
+      <div class="grid-2 services-grid" id="services-grid"></div>
+
+      <a class="btn btn--outline" id="services-cta" href="#contact">Book a discovery call →</a>
     </div>
   </section>
 
@@ -89,13 +111,13 @@
     </div>
   </section>
 
-  <!-- DATA & STRATEGY -->
+  <!-- EXPERIENCE -->
   <section class="section section--green" id="data">
     <div class="container">
       <div class="section-head reveal">
-        <span class="section-head__eyebrow">02 — Data &amp; Strategy</span>
-        <h2>The side that reads the analytics, not just the mood board.</h2>
-        <p>Numbers from client and personal-brand work, plus the strategy and build work behind them.</p>
+        <span class="section-head__eyebrow">02 — Experience & Impact</span>
+        <h2>The numbers, and the roles behind them.</h2>
+        <p>Verified results from client and personal-brand work, and the roles that produced them.</p>
       </div>
 
       <div class="stat-row reveal" id="stat-row"></div>
@@ -110,15 +132,35 @@
       <div class="section-head reveal">
         <span class="section-head__eyebrow">03 — Community</span>
         <h2>Outside the client work.</h2>
-        <p>Global Shapers, youth advocacy, and sustainability work across the UAE.</p>
+        <p>Global Shapers and youth advocacy work across the UAE.</p>
       </div>
       <div class="community-list reveal" id="community-list"></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT + CREATOR SPOTLIGHT -->
   <section class="section section--purple contact" id="contact">
     <div class="container">
+
+      <div class="creator reveal" id="creator-block">
+        <span class="section-head__eyebrow">Also</span>
+        <h3 class="creator__handle" id="creator-handle"></h3>
+        <p class="creator__position" id="creator-position"></p>
+        <p class="creator__tagline" id="creator-tagline"></p>
+
+        <div class="chips" id="creator-pillars"></div>
+
+        <div class="stat-row stat-row--compact" id="creator-stats"></div>
+
+        <p class="creator__label">Brand collaborations</p>
+        <div class="chips chips--outline" id="creator-brands"></div>
+
+        <p class="creator__label">UGC packages</p>
+        <div class="grid-2 grid-3" id="creator-packages"></div>
+      </div>
+
+      <div class="contact__divider"></div>
+
       <h2 id="contact-heading">Let's build something.</h2>
       <div class="contact__links" id="contact-links"></div>
       <div class="footer-bar">

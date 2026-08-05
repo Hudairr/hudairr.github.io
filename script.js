@@ -1,13 +1,14 @@
 /* ==========================================================
    Renders SITE (from content.js) into the page, then wires up
-   the palette-rail scroll indicator + reveal-on-scroll.
+   the palette-rail scroll indicator, service tabs, and
+   reveal-on-scroll.
    ========================================================== */
 (function () {
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   function renderHero() {
-    $("#hero-eyebrow").textContent = SITE.role;
+    $("#hero-eyebrow").textContent = SITE.positioning;
     $("#hero-heading").innerHTML =
       `${SITE.name.split(" ")[0]} <em>${SITE.name.split(" ").slice(1).join(" ")}</em>`;
     $("#hero-tagline").textContent = SITE.tagline;
@@ -16,10 +17,14 @@
     $("#nav-mark").textContent = SITE.name;
     $("#footer-name").textContent = `© ${SITE.name}`;
     $("#footer-year").textContent = new Date().getFullYear();
+    if (SITE.contact && SITE.contact.email) {
+      $("#hero-cta").href = `mailto:${SITE.contact.email}`;
+    }
   }
 
   function renderAbout() {
     $("#about-text").textContent = SITE.about;
+    $("#about-philosophy").textContent = `\u201C${SITE.philosophy}\u201D`;
     const wrap = $("#creds-list");
     wrap.innerHTML = SITE.credentials.map(c => `
       <div class="creds__row">
@@ -47,7 +52,7 @@
     }).join("");
   }
 
-  function renderData() {
+  function renderExperience() {
     $("#stat-row").innerHTML = SITE.stats.map(s => `
       <div class="stat">
         <div class="stat__value">${s.value}</div>
@@ -55,7 +60,7 @@
       </div>
     `).join("");
 
-    $("#work-list").innerHTML = SITE.dataWork.map(w => `
+    $("#work-list").innerHTML = SITE.experience.map(w => `
       <div class="work-item">
         <div>
           <div class="work-item__title">${w.title}</div>
@@ -76,12 +81,78 @@
     `).join("");
   }
 
+  // ---- Services: tab bar + grid, driven by SITE.serviceCategories ----
+  function renderServices() {
+    const tabWrap = $("#service-tabs");
+    const grid = $("#services-grid");
+    const categories = SITE.serviceCategories;
+
+    tabWrap.innerHTML = categories.map((cat, i) => `
+      <button class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-cat="${cat}">${cat}</button>
+    `).join("");
+
+    function paint(cat) {
+      const items = SITE.services[cat] || [];
+      grid.innerHTML = items.map(s => `
+        <div class="card card--light reveal is-in">
+          <div class="card__body">
+            <h3 class="card__title">${s.title}</h3>
+            <p class="card__desc">${s.description}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    tabWrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tab");
+      if (!btn) return;
+      $$(".tab", tabWrap).forEach(t => { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-selected", "true");
+      paint(btn.dataset.cat);
+    });
+
+    paint(categories[0]);
+  }
+
+  // ---- Creator spotlight (@lookitshuda) ----
+  function renderCreator() {
+    const c = SITE.creator;
+    if (!c) { $("#creator-block").remove(); return; }
+
+    $("#creator-handle").textContent = c.handle;
+    $("#creator-position").textContent = c.positioning;
+    $("#creator-tagline").textContent = c.tagline;
+
+    $("#creator-pillars").innerHTML = c.pillars.map(p => `<span class="chip">${p}</span>`).join("");
+
+    $("#creator-stats").innerHTML = c.stats.map(s => `
+      <div class="stat stat--compact">
+        <div class="stat__value">${s.value}</div>
+        <div class="stat__label">${s.label}</div>
+      </div>
+    `).join("");
+
+    $("#creator-brands").innerHTML = c.brands.map(b => `<span class="chip chip--outline">${b}</span>`).join("");
+
+    $("#creator-packages").innerHTML = c.packages.map(p => `
+      <div class="card card--outline">
+        <div class="card__body">
+          <h3 class="card__title">${p.title}</h3>
+          <p class="card__desc">${p.description}</p>
+        </div>
+      </div>
+    `).join("");
+  }
+
   function renderContact() {
     const c = SITE.contact;
     const links = [
       c.linkedin ? { label: "LinkedIn", href: c.linkedin } : null,
-      c.email ? { label: c.email.replace("mailto:", ""), href: `mailto:${c.email}` } : null,
+      c.email ? { label: c.email, href: `mailto:${c.email}` } : null,
+      c.phone ? { label: c.phone, href: `tel:${c.phone.replace(/\s+/g, "")}` } : null,
       c.telegram ? { label: "Telegram", href: c.telegram } : null,
+      c.creatorEmail ? { label: `${c.creatorEmail} (creator inquiries)`, href: `mailto:${c.creatorEmail}` } : null,
       c.instagram ? { label: "Instagram", href: c.instagram } : null,
       c.tiktok ? { label: "TikTok", href: c.tiktok } : null,
     ].filter(Boolean);
@@ -94,9 +165,11 @@
   function renderAll() {
     renderHero();
     renderAbout();
+    renderServices();
     renderDesign();
-    renderData();
+    renderExperience();
     renderCommunity();
+    renderCreator();
     renderContact();
   }
 
