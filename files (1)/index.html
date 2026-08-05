@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huda Imran — Brand & Marketing Strategist</title>
+<meta name="description" content="Huda Imran — brand strategy, design, and data-driven marketing. Dubai, UAE.">
+
+<!-- Social preview (LinkedIn, WhatsApp, Telegram, etc.) -->
+<meta property="og:title" content="Huda Imran — Brand & Marketing Strategist">
+<meta property="og:description" content="Brand strategy, design, and data-driven marketing work. Dubai, UAE.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/asjad-logo.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Palette rail — signature nav, doubles as scroll indicator -->
+<nav class="rail" aria-label="Section navigation">
+  <button class="rail__seg" data-c="hero" data-target="hero" aria-label="Hero"><span class="rail__label">Top</span></button>
+  <button class="rail__seg" data-c="design" data-target="design" aria-label="Design work"><span class="rail__label">Design</span></button>
+  <button class="rail__seg" data-c="data" data-target="data" aria-label="Data & strategy"><span class="rail__label">Data &amp; Strategy</span></button>
+  <button class="rail__seg" data-c="community" data-target="community" aria-label="Community"><span class="rail__label">Community</span></button>
+  <button class="rail__seg" data-c="contact" data-target="contact" aria-label="Contact"><span class="rail__label">Contact</span></button>
+</nav>
+
+<div class="nav">
+  <span class="nav__mark" id="nav-mark"></span>
+  <div class="nav__links">
+    <a href="#design">Design</a>
+    <a href="#data">Data &amp; Strategy</a>
+    <a href="#community">Community</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero section--paper container" id="hero">
+    <p class="hero__eyebrow"><span class="dot"></span><span id="hero-eyebrow"></span></p>
+    <h1 id="hero-heading"></h1>
+    <p class="hero__tagline" id="hero-tagline"></p>
+    <div class="hero__meta">
+      <span><b id="hero-location"></b></span>
+      <span id="hero-availability"></span>
+    </div>
+
+    <div class="swatches" aria-hidden="true">
+      <div class="swatches__group">
+        <div class="swatches__sq" style="background:var(--purple)"></div>
+        <div class="swatches__sq" style="background:var(--magenta)"></div>
+        <div class="swatches__sq" style="background:var(--green)"></div>
+        <div class="swatches__sq" style="background:var(--mustard)"></div>
+      </div>
+      <span class="swatches__caption">My Palette</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--paper container" id="about">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p class="section-head__eyebrow" style="margin-bottom:14px;">About</p>
+        <p id="about-text"></p>
+      </div>
+      <div class="reveal">
+        <div class="creds" id="creds-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN WORK -->
+  <section class="section section--magenta" id="design">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__eyebrow">01 — Design</span>
+        <h2>Brand systems, built to hold up in the real world.</h2>
+        <p>Identity, logotype, and social-content design for publishers, studios, and my own practice.</p>
+      </div>
+      <div class="grid-2" id="design-grid"></div>
+    </div>
+  </section>
+
+  <!-- DATA & STRATEGY -->
+  <section class="section section--green" id="data">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__eyebrow">02 — Data &amp; Strategy</span>
+        <h2>The side that reads the analytics, not just the mood board.</h2>
+        <p>Numbers from client and personal-brand work, plus the strategy and build work behind them.</p>
+      </div>
+
+      <div class="stat-row reveal" id="stat-row"></div>
+
+      <div class="work-list reveal" id="work-list"></div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="section section--mustard" id="community">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-head__eyebrow">03 — Community</span>
+        <h2>Outside the client work.</h2>
+        <p>Global Shapers, youth advocacy, and sustainability work across the UAE.</p>
+      </div>
+      <div class="community-list reveal" id="community-list"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section--purple contact" id="contact">
+    <div class="container">
+      <h2 id="contact-heading">Let's build something.</h2>
+      <div class="contact__links" id="contact-links"></div>
+      <div class="footer-bar">
+        <span id="footer-name"></span>
+        <span id="footer-year"></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="content.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
