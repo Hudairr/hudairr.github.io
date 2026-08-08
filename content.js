@@ -52,11 +52,6 @@ const SITE = {
       description: "Directing creative strategy across branding, social, multimedia design, and paid lead-gen \u2014 coordinating up to 6 concurrent projects and advising on pricing and proposals."
     },
     {
-      title: "BRAINTEK AI Solutions",
-      tag: "Business Development & Marketing Agent, Freelance \u00B7 Jun 2026",
-      description: "Built the company's foundational brand identity and messaging framework, and led website planning and content strategy across LinkedIn, Instagram, Facebook, and X."
-    },
-    {
       title: "NexGen Dubai",
       tag: "Marketing & Business Development Executive \u00B7 Oct 2024 \u2013 Nov 2025",
       description: "Sole marketing lead \u2014 designed the brand identity, ran paid social to 3\u00D7 engagement, built the WordPress/SEO site, and secured 15 university partnership contracts in 9 months."
@@ -104,6 +99,7 @@ const SITE = {
   },
 
   // ── DESIGN WORK ─────────────────────────────────────────
+  // Only non-NDA / shareable projects go here.
   design: [
     {
       title: "Dar Al Asjad Publishing",
@@ -133,6 +129,9 @@ const SITE = {
       image: "assets/rendrvision-logo.png",
       imageAlt: "RendrVision logo mark, RV formed from a continuous line"
     }
+    // ↑ Add more here — copy one of the blocks above, update title/tag/description,
+    // and drop the image file into /assets. Send me the files + names and I'll slot
+    // in as many as you've got.
   ],
 
   // ── COMMUNITY ────────────────────────────────────────────

@@ -36,6 +36,7 @@
 
   function renderDesign() {
     const grid = $("#design-grid");
+    if (!grid) return;
     grid.innerHTML = SITE.design.map(p => {
       const isPhoto = /\.(jpe?g)$/i.test(p.image || "");
       return `
