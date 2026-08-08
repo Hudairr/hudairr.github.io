@@ -9,8 +9,10 @@
 
   function renderHero() {
     $("#hero-eyebrow").textContent = SITE.positioning;
+    const first = SITE.name.split(" ")[0];
+    const rest = SITE.name.split(" ").slice(1).join(" ");
     $("#hero-heading").innerHTML =
-      `${SITE.name.split(" ")[0]} <em>${SITE.name.split(" ").slice(1).join(" ")}</em>`;
+      `<span class="name-cycle">${first}</span> <span class="name-black">${rest}</span>`;
     $("#hero-tagline").textContent = SITE.tagline;
     $("#hero-location").textContent = SITE.location;
     $("#hero-availability").textContent = SITE.availability;
@@ -56,7 +58,7 @@
   function renderExperience() {
     $("#stat-row").innerHTML = SITE.stats.map(s => `
       <div class="stat">
-        <div class="stat__value">${s.value}</div>
+        <div class="stat__value" data-final="${s.value}">0</div>
         <div class="stat__label">${s.label}</div>
       </div>
     `).join("");
@@ -119,7 +121,7 @@
   // ---- Creator spotlight (@lookitshuda) ----
   function renderCreator() {
     const c = SITE.creator;
-    if (!c) { $("#creator-block").remove(); return; }
+    if (!c) { $("#ugc").remove(); return; }
 
     $("#creator-handle").textContent = c.handle;
     $("#creator-position").textContent = c.positioning;
@@ -129,7 +131,7 @@
 
     $("#creator-stats").innerHTML = c.stats.map(s => `
       <div class="stat stat--compact">
-        <div class="stat__value">${s.value}</div>
+        <div class="stat__value" data-final="${s.value}">0</div>
         <div class="stat__label">${s.label}</div>
       </div>
     `).join("");
@@ -146,21 +148,29 @@
     `).join("");
   }
 
+  // ---- Contact dock: fixed edge nav mirroring the palette rail ----
   function renderContact() {
     const c = SITE.contact;
-    const links = [
-      c.linkedin ? { label: "LinkedIn", href: c.linkedin } : null,
-      c.email ? { label: c.email, href: `mailto:${c.email}` } : null,
-      c.phone ? { label: c.phone, href: `tel:${c.phone.replace(/\s+/g, "")}` } : null,
-      c.telegram ? { label: "Telegram", href: c.telegram } : null,
-      c.creatorEmail ? { label: `${c.creatorEmail} (creator inquiries)`, href: `mailto:${c.creatorEmail}` } : null,
-      c.instagram ? { label: "Instagram", href: c.instagram } : null,
-      c.tiktok ? { label: "TikTok", href: c.tiktok } : null,
+    if (c.email) {
+      $("#contact-email-cta").href = `mailto:${c.email}`;
+      $("#contact-email-cta").textContent = `Email me — ${c.email} →`;
+    }
+
+    const items = [
+      c.linkedin ? { short: "in", label: "LinkedIn", href: c.linkedin } : null,
+      c.email ? { short: "\u2709", label: c.email, href: `mailto:${c.email}` } : null,
+      c.telegram ? { short: "tg", label: "Telegram", href: c.telegram } : null,
+      c.instagram ? { short: "ig", label: "Instagram", href: c.instagram } : null,
+      c.tiktok ? { short: "tt", label: "TikTok", href: c.tiktok } : null,
+      c.creatorEmail ? { short: "ugc", label: `${c.creatorEmail} (creator inquiries)`, href: `mailto:${c.creatorEmail}` } : null,
     ].filter(Boolean);
 
-    $("#contact-links").innerHTML = links.map(l =>
-      `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`
-    ).join("");
+    $("#contact-dock").innerHTML = items.map(l => `
+      <a class="dock__item" href="${l.href}" target="_blank" rel="noopener">
+        <span class="dock__short">${l.short}</span>
+        <span class="dock__label">${l.label}</span>
+      </a>
+    `).join("");
   }
 
   function renderAll() {
@@ -213,10 +223,55 @@
     items.forEach(item => io.observe(item));
   }
 
+  // ---- Count-up stat numbers ----
+  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateValue(el, finalText, duration) {
+    const match = finalText.match(/^([\d,]+(?:\.\d+)?)/);
+    if (!match) { el.textContent = finalText; return; }
+    const numStr = match[1];
+    const suffix = finalText.slice(numStr.length);
+    const hasComma = numStr.indexOf(",") !== -1;
+    const decimals = numStr.indexOf(".") !== -1 ? numStr.split(".")[1].length : 0;
+    const target = parseFloat(numStr.replace(/,/g, ""));
+    const start = performance.now();
+
+    function frame(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      let display = decimals ? val.toFixed(decimals) : Math.round(val).toString();
+      if (hasComma) {
+        display = Number(display).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      }
+      el.textContent = display + suffix;
+      if (p < 1) requestAnimationFrame(frame); else el.textContent = finalText;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function wireCountUp() {
+    const nodes = $$(".stat__value[data-final]");
+    if (prefersReducedMotion) {
+      nodes.forEach(el => { el.textContent = el.dataset.final; });
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateValue(entry.target, entry.target.dataset.final, 1100);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    nodes.forEach(el => io.observe(el));
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     renderAll();
     wireRail();
     wireReveal();
+    wireCountUp();
     // mark hero active immediately on load
     $(".rail__seg[data-target='hero']").classList.add("is-active");
   });

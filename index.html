@@ -31,6 +31,9 @@
   <button class="rail__seg" data-c="contact" data-target="contact" aria-label="Contact"><span class="rail__label">Contact</span></button>
 </nav>
 
+<!-- Contact dock — mirrors the rail on the opposite edge, always-on quick links -->
+<nav class="dock" id="contact-dock" aria-label="Quick contact links"></nav>
+
 <div class="nav">
   <span class="nav__mark" id="nav-mark"></span>
   <div class="nav__links">
@@ -38,6 +41,7 @@
     <a href="#design">Design</a>
     <a href="#data">Experience</a>
     <a href="#community">Community</a>
+    <a href="#ugc" class="nav__ugc">UGC</a>
     <a href="#contact">Contact</a>
   </div>
 </div>
@@ -102,7 +106,7 @@
   <!-- DESIGN WORK -->
   <section class="section section--magenta" id="design">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head panel panel--dark reveal">
         <span class="section-head__eyebrow">01 — Design</span>
         <h2>Brand systems, built to hold up in the real world.</h2>
         <p>Identity, logotype, and social-content design for publishers, studios, and my own practice.</p>
@@ -114,7 +118,7 @@
   <!-- EXPERIENCE -->
   <section class="section section--green" id="data">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head panel panel--light reveal">
         <span class="section-head__eyebrow">02 — Experience & Impact</span>
         <h2>The numbers, and the roles behind them.</h2>
         <p>Verified results from client and personal-brand work, and the roles that produced them.</p>
@@ -129,7 +133,7 @@
   <!-- COMMUNITY -->
   <section class="section section--mustard" id="community">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head panel panel--light reveal">
         <span class="section-head__eyebrow">03 — Community</span>
         <h2>Outside the client work.</h2>
         <p>Global Shapers and youth advocacy work across the UAE.</p>
@@ -142,11 +146,13 @@
   <section class="section section--purple contact" id="contact">
     <div class="container">
 
-      <div class="creator reveal" id="creator-block">
-        <span class="section-head__eyebrow">Also</span>
-        <h3 class="creator__handle" id="creator-handle"></h3>
-        <p class="creator__position" id="creator-position"></p>
-        <p class="creator__tagline" id="creator-tagline"></p>
+      <div class="creator reveal" id="ugc">
+        <div class="panel panel--dark creator__intro">
+          <span class="section-head__eyebrow">Also</span>
+          <h3 class="creator__handle" id="creator-handle"></h3>
+          <p class="creator__position" id="creator-position"></p>
+          <p class="creator__tagline" id="creator-tagline"></p>
+        </div>
 
         <div class="chips" id="creator-pillars"></div>
 
@@ -161,8 +167,10 @@
 
       <div class="contact__divider"></div>
 
-      <h2 id="contact-heading">Let's build something.</h2>
-      <div class="contact__links" id="contact-links"></div>
+      <div class="panel panel--dark">
+        <h2 id="contact-heading">Let's build something.</h2>
+        <a class="btn btn--light" id="contact-email-cta" href="#">Email me →</a>
+      </div>
       <div class="footer-bar">
         <span id="footer-name"></span>
         <span id="footer-year"></span>

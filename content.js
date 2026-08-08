@@ -172,7 +172,6 @@ const SITE = {
   // ── CONTACT — replace every value below with your real ones ─
   contact: {
     email: "workaholichuda@gmail.com",
-    phone: "+971 55 894 7181",
     linkedin: "https://linkedin.com/in/hudairr",
     telegram: "https://t.me/your-username",
     creatorEmail: "lookitshuda@gmail.com",
